@@ -70,4 +70,9 @@ streamlit.write('The user entered ', add_my_fruit)
 
 
 #Let's Call the Fruityvice API from Our Streamlit App
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + add_my_fruit)
+add_fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + add_my_fruit)
+
+# Normalizing the JSON version of the response 
+add_fruityvice_response_normalized = pandas.json_normalize(add_fruityvice_response.json())
+# Output as a table
+streamlit.dataframe(add_fruityvice_response_normalized)
