@@ -69,19 +69,23 @@ except URLError as e:
   
  
 
-#Stopping the flow past here for Troubleshooting!
-streamlit.stop()
+#Stopping the flow past here for Troubleshooting! -->  streamlit.stop()
+
 
 #Setting Up Streamlit to Work with Snowflake
 
-
-#Trying to Query All the Rows in fruit_load_list from snowflake
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * FROM pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit load list contains :")
-streamlit.dataframe(my_data_rows)
+#Snowflake-related functions
+def get_fruit_load_list():
+   with my_cur = my_cnx.cursor()
+        my_cur.execute("SELECT * FROM fruit_load_list")
+        return  my_cur.fetchall()
+      
+#Adding button to load the fruit
+if streamlit.button('Get fruit Load List'):
+   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+   my_data_rows = get_fruit_load_list()
+   streamlit.dataframe(my_data_rows)
 
 
 
