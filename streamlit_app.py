@@ -62,7 +62,7 @@ try:
    
     
     # Output as a table
-    streamlit.dataframe(fruityvice_normalized)
+    #streamlit.dataframe(fruityvice_normalized)
     
 except URLError as e:
   Steramlit.error()
