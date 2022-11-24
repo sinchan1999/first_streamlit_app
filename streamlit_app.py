@@ -1,4 +1,10 @@
 import streamlit
+import pandas
+import requests
+import snowflake.connector
+from urllib.error import URLError
+
+
 streamlit.title("Hey Sinchan this side! Starting on Streamlit with Food Menu.")
 
 streamlit.header('Breakfast Menu')
@@ -19,7 +25,7 @@ streamlit.text("Chicken curry")
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
-import pandas
+
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
@@ -40,7 +46,7 @@ streamlit.write('The user entered ', fruit_choice)
 
 
 #Let's Call the Fruityvice API from Our Streamlit App
-import requests
+
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 #For Displaying the response
@@ -51,8 +57,11 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # Output as a table
 streamlit.dataframe(fruityvice_normalized)
 
+#Stopping the flow past here for Troubleshooting!
+streamlit.stop()
+
 #Setting Up Streamlit to Work with Snowflake
-import snowflake.connector
+
 
 #Trying to Query All the Rows in fruit_load_list from snowflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
