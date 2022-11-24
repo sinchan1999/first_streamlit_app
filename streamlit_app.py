@@ -57,7 +57,7 @@ import snowflake.connector
 #Trying to Query All the Rows in fruit_load_list from snowflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * FROM fruit_load_list")
+my_cur.execute("SELECT * FROM pc_rivery_db.public.fruit_load_list")
 my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit load list contains :")
 streamlit.dataframet(my_data_rows)
