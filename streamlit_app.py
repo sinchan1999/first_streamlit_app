@@ -40,6 +40,7 @@ streamlit.dataframe(fruits_to_show)
 
 #Creating a funtion for the repeatable code block
 def get_fruityvice_data(this_fruit_choice):
+   
    #Let's Call the Fruityvice API from Our Streamlit App
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     #For Displaying the response  -->  #streamlit.text(fruityvice_response)  
