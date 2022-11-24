@@ -46,7 +46,7 @@ def get_fruityvice_data(this_fruit_choice):
     
     # Normalizing the JSON version of the response 
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    return fruityvice_normalize
+    return fruityvice_normalized
   
  # New section to display Fruityvice API
 streamlit.header("Fruityvice Fruit Advice!")
